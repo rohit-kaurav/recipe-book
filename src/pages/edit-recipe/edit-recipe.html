@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Recipe</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="recipeForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text"
+                   placeholder="Biryani"
+                   formControlName="recipeName">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-input type="text"
+                   placeholder="This is a very tasty dish."
+                   formControlName="description">
+        </ion-input>
+      </ion-item>
+      <button ion-button
+              block
+              clear
+              color="secondary"
+              (click)="addIngredient()">
+        Manage Ingredients
+      </button>
+      <button ion-button
+              block
+              (click)="addRecipe()">
+        Add Recipe
+      </button>
+    </ion-list>
+  </form>
+</ion-content>

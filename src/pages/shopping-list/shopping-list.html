@@ -1,0 +1,61 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Shopping List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>
+          Name
+        </ion-label>
+        <ion-input type="text"
+                   placeholder="Bread"
+                   required
+                   ngModel
+                   name="ingredientName">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>
+          Amount
+        </ion-label>
+        <ion-input type="number"
+                   placeholder="3"
+                   required
+                   ngModel
+                   name="amount">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <button type="submit"
+            [disabled]="f.invalid"
+            ion-button
+            full>
+      Add Item
+    </button>
+  </form>
+  <ion-list *ngIf="ingredientList.length; else noIngredients">
+    <ion-item-sliding *ngFor="let item of ingredientList">
+      <ion-item (tap)="removeIngredient(item)"
+                color="light">
+        {{ item.ingredientName }} ({{ item.amount }})
+      </ion-item>
+      <ion-item-options>
+        <button ion-button
+                color="deleteColor"
+                (click)="removeIngredient(item)">
+          <ion-icon name="trash"></ion-icon>
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ng-template #noIngredients>
+    <p padding>No Ingredients added.</p>
+  </ng-template>
+</ion-content>
